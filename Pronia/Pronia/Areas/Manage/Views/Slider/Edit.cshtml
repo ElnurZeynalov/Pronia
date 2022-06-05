@@ -1,0 +1,28 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Edit";
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="gorum-group">
+        <label asp-for="Title"></label>
+        <input class="form-control" asp-for="Title"/>
+        <span asp-validation-for="Title"></span>
+    </div>
+    <div class="gorum-group">
+        <label asp-for="Description"></label>
+        <input class="form-control" asp-for="Description"/>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div class="gorum-group">
+        <label asp-for="DiscountPercent"></label>
+        <input class="form-control" asp-for="DiscountPercent"/>
+        <span asp-validation-for="DiscountPercent"></span>
+    </div>
+    <div class="gorum-group">
+        <label asp-for="imageFile">Image</label>
+        <input  class="form-control" asp-for="imageFile"/>
+        <span asp-validation-for="imageFile"></span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Create</button>
+</form>
+

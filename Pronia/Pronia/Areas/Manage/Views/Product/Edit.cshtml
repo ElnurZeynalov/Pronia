@@ -1,0 +1,90 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit";
+}
+@section styles{
+<link href="~/admin/css/vendor/select2.min.css" rel="stylesheet" />
+<link href="~/admin/css/vendor/select2-bootstrap4.min.css" rel="stylesheet" />
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span class="text-primary" asp-validation-for="Name"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Price" class="form-label"></label>
+                            <input asp-for="Price" class="form-control" />
+                            <span class="text-primary" asp-validation-for="Price"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Raiting" class="form-label"></label>
+                            <input asp-for="Raiting" class="form-control" />
+                            <span class="text-primary" asp-validation-for="Raiting"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="StockCount" class="form-label"></label>
+                            <input asp-for="StockCount" class="form-control" />
+                            <span class="text-primary" asp-validation-for="StockCount"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label"></label>
+                            <textarea asp-for="Description" class="form-control"></textarea>
+                            <span class="text-primary" asp-validation-for="Description"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="MainPhoto" class="form-label">Main photo</label>
+                            <input asp-for="MainPhoto" accept="images/" class="form-control" />
+                            <span class="text-primary" asp-validation-for="MainPhoto"></span>
+                        </div>
+                        <div class="mb-3 delete-image">
+                            <label>Main Photo : </label>
+                            <img style="width:150px" src="~/assets/images/product/@Model.ProductImages.FirstOrDefault(image=>image.IsMain==true).Image" alt="" />
+                            <input type="hidden" asp-for="ProductImageIds" value="@Model.ProductImages.FirstOrDefault(image=>image.IsMain==true).Id" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Photos" class="form-label"></label>
+                            <input asp-for="Photos" accept="image/*" class="form-control" />
+                            <span class="text-primary" asp-validation-for="Photos"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label>Product Photos : </label>
+                            <div class="row">
+                                @foreach (var item in Model.ProductImages.Where(image => image.IsMain == false))
+                                {
+                                    <div class="col delete-image">
+                                        <img style="width:150px" src="~/assets/images/product/@item.Image" alt="" />
+                                        <input type="hidden" asp-for="ProductImageIds" value="@item.Id" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <select class="select2 form-control js-example-basic-single" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories,nameof(Category.Id),nameof(Category.Name)))">
+                                <option disabled selected>Category</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn bg-primary">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+<partial name="_ValidationPartial" />
+<script src="~/admin/js/vendor/select2.full.min.js"></script>
+<script>
+    $(".select2").select2();
+    $(".delete-image").click(function () {
+        $(this).remove();
+    })
+</script>
+}

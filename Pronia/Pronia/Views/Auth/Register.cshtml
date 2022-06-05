@@ -1,0 +1,52 @@
+﻿@model RegisterVM
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="login-register-area section-space-y-axis-100">
+    <div class="container">
+        <div class="col-lg-12 pt-5 pt-lg-0">
+            <form method="post" asp-action="Register">
+                <div class="login-form">
+                    <h4 class="login-title">Register</h4>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <label asp-for="FirstName">First Name</label>
+                            <input asp-for="FirstName" placeholder="First Name">
+                            <span asp-validation-for="FirstName"></span>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label asp-for="LastName">Last Name</label>
+                            <input asp-for="LastName" placeholder="Last Name">
+                            <span asp-validation-for="LastName"></span>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label asp-for="UserName">User Name</label>
+                            <input asp-for="UserName" placeholder="User Name">
+                            <span asp-validation-for="UserName"></span>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label asp-for="Email">Email Address*</label>
+                            <input asp-for="Email" placeholder="Email Address">
+                            <span asp-validation-for="Email"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Password">Password</label>
+                            <input asp-for="Password" placeholder="Password">
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="ConfrimPassword">Confirm Password</label>
+                            <input asp-for="ConfrimPassword" placeholder="Confirm Password">
+                            <span asp-validation-for="ConfrimPassword"></span>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-custom-size lg-size btn-pronia-primary">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
